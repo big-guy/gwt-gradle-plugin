@@ -8,3 +8,5 @@ build/
 war/
 gwt-unitCache/
 *.md.html
+.idea
+
