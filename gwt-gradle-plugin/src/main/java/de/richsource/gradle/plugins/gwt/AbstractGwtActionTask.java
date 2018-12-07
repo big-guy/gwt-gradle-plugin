@@ -24,8 +24,11 @@ import org.gradle.api.Action;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.InvalidUserDataException;
 import org.gradle.api.file.FileCollection;
+import org.gradle.api.tasks.Classpath;
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.InputFiles;
+import org.gradle.api.tasks.PathSensitive;
+import org.gradle.api.tasks.PathSensitivity;
 import org.gradle.api.tasks.TaskAction;
 import org.gradle.process.ExecResult;
 import org.gradle.process.JavaExecSpec;
@@ -193,6 +196,7 @@ public abstract class AbstractGwtActionTask extends DefaultTask {
 	}
 
 	@InputFiles
+	@PathSensitive(PathSensitivity.RELATIVE)
 	public FileCollection getSrc() {
 		return src;
 	}
@@ -208,7 +212,7 @@ public abstract class AbstractGwtActionTask extends DefaultTask {
 		this.src = src;
 	}
 
-	@Input
+	@Classpath
 	public FileCollection getClasspath() {
 		return classpath;
 	}
