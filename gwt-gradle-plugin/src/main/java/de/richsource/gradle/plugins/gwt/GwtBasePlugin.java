@@ -269,7 +269,7 @@ public class GwtBasePlugin implements Plugin<Project> {
 				conventionMapping.map("classpath", new Callable<FileCollection>() {
 					@Override
 					public FileCollection call() throws Exception {
-						return mainSourceSet.getCompileClasspath().plus(project.files(mainSourceSet.getOutput().getClassesDir()));
+						return mainSourceSet.getCompileClasspath().plus(project.files(mainSourceSet.getOutput()));
 					}
 				});
 				conventionMapping.map("minHeapSize", new Callable<String>() {
