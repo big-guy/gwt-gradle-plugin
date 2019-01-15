@@ -1,11 +1,14 @@
-apply plugin: 'java-gradle-plugin'
-apply plugin: 'maven-publish'
+plugins {
+  id "com.gradle.plugin-publish" version "0.10.0"
+  id "java-gradle-plugin"
+  id "maven-publish"
+}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-group = "de.richsource.gradle.plugins"
-version = "0.7"
+group = "com.greenebeans.gwt"
+version = "0.1"
 
 repositories {
 	mavenCentral()
@@ -18,4 +21,26 @@ dependencies {
 
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
+}
+
+gradlePlugin {
+  plugins {
+    gwtPlugin {
+      id = 'com.greenebeans.gwt-gradle-plugin'
+      implementationClass = 'de.richsource.gradle.plugins.gwt.GwtPlugin'
+    }
+  }
+}
+
+pluginBundle {
+  website = 'https://github.com/big-guy/gwt-gradle-plugin'
+  vcsUrl = 'https://github.com/big-guy/gwt-gradle-plugin'
+  description = 'Fork of de.richsource.gradle.plugins:gwt-gradle-plugin for Gradle 5.x'
+  tags = ['gwt']
+
+  plugins {
+    gwtPlugin {
+      displayName = 'GWT Gradle plugin'
+    }
+  }
 }
